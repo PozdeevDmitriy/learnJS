@@ -10,7 +10,9 @@ var calculator = new Calculator();
 calculator.read();
 
 alert( "Сумма=" + calculator.sum() );
-alert( "Произведение=" + calculator.mul() );*/
+alert( "Произведение=" + calculator.mul() );
+
+
 function Calculator() {
  this.read = function() {
   this.one = +prompt('Введите первое значение', '');
@@ -24,12 +26,12 @@ function Calculator() {
  };
 
 };
-
-/*var calculator = new Calculator();
+var calculator = new Calculator();
 calculator.read();
 
-alert( "Сумма = " + calculator.sum() );
-alert( "Произведение = " + calculator.mul() );*/
+alert( `Сумма= ${calculator.sum()}` );
+alert( "Произведение=" + calculator.mul() );
+*/
 
 /*Напишите функцию-конструктор Accumulator(startingValue). 
 Объекты, которые она создает, должны хранить текущую сумму и прибавлять к ней то, что вводит посетитель.
@@ -47,9 +49,9 @@ startingValue.
 var accumulator = new Accumulator(1); // начальное значение 1
 accumulator.read(); // прибавит ввод prompt к текущему значению
 accumulator.read(); // прибавит ввод prompt к текущему значению
-alert( accumulator.value ); // выведет текущее значение*/
+alert( accumulator.value ); // выведет текущее значение
 
-/*function Accumulator(startingValue) {
+function Accumulator(startingValue) {
   this.value = startingValue,
   this.read = function() {
   this.value += +prompt('Введи число', ''); 
@@ -58,30 +60,10 @@ alert( accumulator.value ); // выведет текущее значение*/
 var accumulator = new Accumulator(1); // начальное значение 1
 accumulator.read(); // прибавит ввод prompt к текущему значению
 accumulator.read(); // прибавит ввод prompt к текущему значению
-alert( accumulator.value); // выведет текущее значение*/
-var str = '33321 +++ 2125';// ищем в этой строке
-var pos = -1;
-while ((pos = str.indexOf(' ', pos + 1)) != -1) {
-  alert(str.slice(0, pos) );
-}
-/*function Calculator() {
-  this.calculate = function(str) {
-    this.one = str.slice(0, ' '),
-   // this.two = str.slice(0, ' '),
-    this.method = str.slice(str.indexOf(' '), ' ')
-};
-var calc = new Calculator;
+alert( accumulator.value); // выведет текущее значение
 
-alert( calc.calculate("55 - 75") );
-/*var powerCalc = new Calculator;
 
-powerCalc.addMethod("*", function(a, b) {
-  return a * b;
-});
-var result = powerCalc.calculate("2 ** 3");
-alert( result )
-
-/*НУЖНО РЕШИТЬ ПОСЛЕДНИЙ КАЛЬКУЛЯТОР
+НУЖНО РЕШИТЬ ПОСЛЕДНИЙ КАЛЬКУЛЯТОР
 Напишите конструктор Calculator, который создаёт расширяемые объекты-калькуляторы.
 
 Эта задача состоит из двух частей, которые можно решать одна за другой.
@@ -117,3 +99,48 @@ alert( result ); // 8
 Поддержка скобок и сложных математических выражений в этой задаче не требуется.
 Числа и операции могут состоять из нескольких символов. Между ними ровно один пробел.
 Предусмотрите обработку ошибок. Какая она должна быть – решите сами.*/
+
+function Calculator() {
+
+  var methods = {
+    "-": function(a, b) {//записываем методы(свойства-функции) локального объекта methods
+      return a - b;
+    },
+    "+": function(a, b) {
+      return a + b;
+    }
+  };
+
+  this.calculate = function(str) {
+
+    var split = str.split(' '),//преобразуем строку в массив пробел это разделитель
+      a = +split[0], //первый элемент
+      op = split[1], //знак функции 
+      b = +split[2] //второй элемент
+
+    if (!methods[op]/*op-переменная в которой хранится знак в виде строки*/|| isNaN(a) || isNaN(b)) {
+      return NaN;
+    }
+
+    return methods[op](a, b);//возвращает результат вызова функции с аргументами а и b
+  }
+
+  this.addMethod = function(name, func) {//добавляем объекту метод с параметрами name и func
+    methods[name] = func;//добавляем объекту methods новый метод
+  };
+}
+
+var calc = new Calculator;
+
+calc.addMethod("*", function(a, b) {
+  return a * b;
+});
+calc.addMethod("/", function(a, b) {
+  return a / b;
+});
+calc.addMethod("**", function(a, b) {
+  return Math.pow(a, b);
+});
+
+var result = calc.calculate("9 / 3");
+alert( result ); // 8

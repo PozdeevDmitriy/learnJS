@@ -73,6 +73,9 @@ let money,
      }
 
   };
+  for (let key in mainList) {
+    console.log(`Наш магазин включает в себя ${key} co значением ${mainList[key]}`);
+  }
  /*var i = 0 
  while (i < 5) {
    let a = prompt('Какой тип товаров будем продавать?');
