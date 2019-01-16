@@ -20,7 +20,7 @@ let money,
     open: false,
     isDiscount: true,
     shopItems: [],
-    chooseGoods: function chooseGoods() {
+    chooseGoods: function() {
       for (let i = 0; i < 5; i++) {
         let a = prompt('Какой тип товаров будем продавать?', '');
         if ((typeof (a)) === 'string' && a != '' && a.length < 50) {
@@ -33,7 +33,7 @@ let money,
       };
 
     },
-    workTime: function workTime() {
+    workTime: function() {
       if (time < 0) {
         console.log('Такого быть не может');
       } else if (time > 8 && time < 20) {
@@ -46,7 +46,7 @@ let money,
         console.log(time);
       }
     },
-    dayBudget: function dayBudget() {
+    dayBudget: function() {
       alert(`Ваш бюджет на день составляет ${money/dayInMounth}`);
     },
     makeDiscount: function makeDiscount () {
@@ -55,28 +55,29 @@ let money,
       }
       console.log(price);
      },
-     hireEmployers: function hireEmployers() {
+     hireEmployers: function() {
       for (let i = 1; i < 5; i++) {
         mainList.employers[i] = prompt('Введите имя сотрудника','');
       }
      },
-     chooseShopItem: function chooseShopItem() {
+     chooseShopItem: function() {
        let items = prompt('Перечислите через запятую ваши товары', '');
        mainList.shopItems = items.split(',');
        mainList.shopItems.push(prompt('Подождите еще', ''));
        mainList.shopItems.sort();
      },
-     showShopItems: function showShopItems() {
+     showShopItems: function() {
        mainList.shopItems.forEach(function(item, i, arr) {
          console.log(`У нас вы можете купить ${i+1} - ${item}`);
        })
      }
 
   };
+  /*
   for (let key in mainList) {
     console.log(`Наш магазин включает в себя ${key} co значением ${mainList[key]}`);
   }
- /*var i = 0 
+ var i = 0 
  while (i < 5) {
    let a = prompt('Какой тип товаров будем продавать?');
    if ((typeof(a)) === 'string' && a != '' && a.length < 50) {
