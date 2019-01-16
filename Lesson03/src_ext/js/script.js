@@ -18,7 +18,7 @@ let arr = [20, 33, 1, "Человек", 2, 3];
     };
 let sqrtSum = Math.sqrt(sum);
 console.log(sqrtSum); 
-var test = '                             игорьdsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsddfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdsdfsdf                                                                                        ';
+
 function valid(text) {
   if (typeof(text) != 'string') {
     alert ('Вы ввели не строку');
@@ -32,4 +32,4 @@ function valid(text) {
     }
 };
 
-valid(test);
+valid('                             игорьdsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssfsddfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdsdfsdf                                                                                        ')

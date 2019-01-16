@@ -78,6 +78,7 @@ let money,
    }
  }
 workTime();
+
 function calcDayBudget(dayInMounth) {
    while (isNaN(dayInMounth) || dayInMounth == '' || dayInMounth == null) {
       dayInMounth = +prompt('Введите количество дней в месяце');
@@ -86,7 +87,7 @@ function calcDayBudget(dayInMounth) {
 }
 calcDayBudget(+prompt('Введите количество дней в месяце'));
 
-function discount (price) {
+function discount () {
  price = +prompt('Введите стоимость товара');
  if (mainList.isDiscount) {
    price = price * 0.8;  
@@ -94,4 +95,4 @@ function discount (price) {
  console.log(price);
 };
 
-discount(100);
+discount();
