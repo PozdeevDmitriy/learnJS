@@ -1,0 +1,24 @@
+.test {
+ width: 100px;
+ height: 100px;
+ background: #ffffff;
+ transition: 2s;
+}
+.test_1 {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ width: 150px;
+ height: 150px;
+ background: purple;
+ transition: 1s;
+}
+.test_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    background: green;
+    transition: 3s;
+   }
