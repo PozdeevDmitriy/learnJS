@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		};
 	});
 
-	let deadline = '2019-01-22';
+	let deadline = '2019-01-24';
 
 	function getTimeRemaining(endtime){//Считаем сколько осталось времени до конца и 
 		let t = Date.parse(endtime) - Date.parse(new Date()),//возвращаем объект
