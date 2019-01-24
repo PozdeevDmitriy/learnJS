@@ -1,3 +1,15 @@
+@keyframes fly {
+  from {
+    margin-left: -70px;
+  }
+  to {
+   ml0
+  }
+}
+.fly {
+  animation-name: fly;
+  animation-duration: 2s;
+}
 .fade {
   -webkit-animation-name: fade;
           animation-name: fade;
@@ -22,6 +34,7 @@
     opacity: 1;
   }
 }
+
 .more-splash {
   -webkit-animation-name: splash;
           animation-name: splash;

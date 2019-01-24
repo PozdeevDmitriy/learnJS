@@ -83,19 +83,40 @@ window.addEventListener('DOMContentLoaded', function() {
 	};
 
 	setClock('timer', deadline);//
-
+alert(navigator.userAgent);
 	//Modal
 	let more = document.querySelector('.more'),
 	    description = document.querySelectorAll('.description-btn'),
 		overlay = document.querySelector('.overlay'),
-		close = document.querySelector('.popup-close');
+		close = document.querySelector('.popup-close'),
+		popup = document.querySelector('.popup');
+
+	function animation() {
+		let pos = 90,
+		interval = setInterval(frame, 10);
+
+		function frame() {
+			if (pos > 0) {
+				pos = pos - 2;
+				popup.style.marginLeft = pos + 'px';
+			} else {clearInterval(interval);}
+		}
+		
+	}
 
     for (let i = 0; i < description.length; i++){
 		description[i].addEventListener('click', function() {
 			this.classList.add('more-splash');
 			overlay.style.display = 'block';
 			document.body.style.overflow = 'hidden';
+			if (!/Edge|IE/i.test(navigator.userAgent)) {
+				animation();	
+			} else if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+              popup.classList.add('fly');
+			} 
+			
 		   });
+		  ;
 	} 
     
 	more.addEventListener('click', function() {
