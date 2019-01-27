@@ -174,6 +174,118 @@ window.addEventListener('DOMContentLoaded', function() {
 	};
 	sendRequest('form');
 	sendRequest('main-form');
+
+	//slider
+	let slideIndex = 1,//номер слайда
+		slides = document.getElementsByClassName('slider-item'),//сам слайд
+		prev = document.querySelector('.prev'),//стрелка предыдущий
+		next = document.querySelector('.next'),//стрелка следующий
+		dotsWrap = document.querySelector('.slider-dots'),//обертка точек
+		dots = document.getElementsByClassName('dot');//точки
+		 
+		showSlides(slideIndex);//показ 1  слайда
+
+		function showSlides(n) {//ф-ция показа текущего слайда 
+         if (n > slides.length) {//если нужно пролистать дальше последнего
+			slideIndex = 1;//то возвращаемся к первому
+		 };
+		 if (n < 1) {//если убавили тщ
+			 slideIndex = slides.length;//последний слайд
+		 };
+
+		 for ( let i = 0; i < slides.length; i++) {//скрываем все слайды
+			 slides[i].style.display = 'none';//каждому слайду устанавливаем display none
+		 }
+		 for ( let i = 0; i < dots.length; i ++) {//у всех точек убираем класс активности
+			 dots[i].classList.remove('dot-active');
+		 };
+
+		 slides[slideIndex - 1].style.display = 'block';//показываем активный слайд
+		 dots[slideIndex - 1].classList.add('dot-active');//активной точке добавляем класс активности
+		}
+
+		function plusSlides (n) {//ф-ция добавления или отнимания n-слайдов
+			showSlides(slideIndex += n);//вызов функции показа 
+		}
+		function currentSlide(n) {//получаем номер текущего слайда
+			showSlides(slideIndex = n);
+		}
+		prev.addEventListener('click', function() {//клик на стрелке пред.слайда
+			plusSlides(-1);
+		});
+		next.addEventListener('click', function() {//клик на стрелке след.слайда
+			plusSlides(1);
+		});
+
+		dotsWrap.addEventListener('click', function(event) {  
+          for (let i = 0; i < dots.length + 1; i++) {
+			  if (event.target.classList.contains('dot') && event.target == dots[i-1]) {//проверяем содержит то, куда мы кликнули ли класс dot
+				  currentSlide(i);
+			  }
+		  }
+		});
+	
+	let persons = document.getElementsByClassName('counter-block-input')[0],//Input количество людей
+		restDays = document.getElementsByClassName('counter-block-input')[1],//input количество дней
+		place = document.getElementById('select'),//элемент выбора места 
+		totalValue = document.getElementById('total'),//элемент итого
+		personsSum = 0,//
+		daysSum = 0,
+		total = 0;
+
+
+		persons.value = 0;
+		restDays.value = 0;
+		place.selectedIndex = 0;
+		totalValue.innerHTML = '0';
+
+		persons.addEventListener('change', function() {
+			personsSum = +this.value;
+			
+			if (restDays.value == '' || restDays.value <= 0 || persons.value <= 0) {
+             totalValue.innerHTML = '0';
+			} else if (place.selectedIndex == 0){
+				let a = personsSum;
+				total = (daysSum + a)*4000;
+				totalValue.innerHTML = total;
+			} else {
+				let a = personsSum;
+				total = (a + personsSum)*4000 * place.options[place.selectedIndex].value;
+				totalValue.innerHTML = total;
+			}
+		});
+
+		restDays.addEventListener('change', function(){
+			daysSum = +this.value;
+			
+			if (persons.value == '' || restDays.value <= 0 || persons.value <= 0) {
+             totalValue.innerHTML = '0';
+			} else if (place.selectedIndex == 0){
+				let a = daysSum;
+				total = (a + personsSum)*4000;
+				totalValue.innerHTML = total;
+			} else {
+				let a = daysSum;
+				total = (a + personsSum)*4000 * place.options[place.selectedIndex].value;
+				totalValue.innerHTML = total;
+
+			}
+		});
+
+		place.addEventListener('change', function() {
+			if (restDays.value == '' || persons.value == '') {
+				totalValue.innerHTML = 0;
+			} else {
+				let a = total;
+				totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+			}
+		})
+
+		//scroll
+		let mainMenu = document.getElementsByTagName('ul')[0],
+			mainMenuItems = document.querySelectorAll('ul li a');
+			console.log(mainMenuItems);
+
 	
 });
 
