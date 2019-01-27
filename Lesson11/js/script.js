@@ -234,12 +234,36 @@ window.addEventListener('DOMContentLoaded', function() {
 		total = 0;
 
 
-		persons.value = 0;
-		restDays.value = 0;
-		place.selectedIndex = 0;
-		totalValue.innerHTML = '0';
+		//persons.value = 0;
+		//restDays.value = 0;
+		//place.selectedIndex = 0;
+		//totalValue.innerHTML = '0';
 
-		persons.addEventListener('change', function() {
+
+		function calc (id) {
+		  let form = document.getElementById(id),
+			  input = form.getElementsByTagName('input');
+			  for (let i = 0; i < input.length; i++) {
+				input[i].value = 0;
+			  }
+			 
+				form.addEventListener('change', function(event) {
+					if (event.target.classList.contains('counter-block-input')){
+						if(input[1].value == '' || input[1].value <= 0 || input[0].value <= 0) {
+							totalValue.innerHTML = '0';
+					} else {
+						let a = event.target.value;
+				        total = (input[0].value + a)*4000;
+				        totalValue.innerHTML = total;
+					} 	
+					}
+			
+				});
+			  
+			  
+		}
+calc('price');
+		/*persons.addEventListener('change', function() {
 			personsSum = +this.value;
 			
 			if (restDays.value == '' || restDays.value <= 0 || persons.value <= 0) {
@@ -284,8 +308,7 @@ window.addEventListener('DOMContentLoaded', function() {
 		//scroll
 		let mainMenu = document.getElementsByTagName('ul')[0],
 			mainMenuItems = document.querySelectorAll('ul li a');
-			console.log(mainMenuItems);
-
+			console.log(mainMenuItems);*/
 	
 });
 
