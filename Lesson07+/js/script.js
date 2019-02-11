@@ -19,7 +19,6 @@ input.addEventListener('keyup', () => {
         });
 
     if (length > 0) {
-        console.log(filter);
         record(filter);
     }
 });
